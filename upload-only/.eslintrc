@@ -1,0 +1,68 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["eslint-plugin-react-hooks", "@typescript-eslint/eslint-plugin"],
+  "rules": {
+    "import/no-unresolved": "error",
+    "react/jsx-props-no-spreading": [0],
+    "no-console": [0],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        "functions": false
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "ignorePropertyModificationsFor": ["registration"]
+      }
+    ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["__WB_MANIFEST"]
+      }
+    ],
+    "function-paren-newline": [0],
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "max-len": [
+      2,
+      120,
+      {
+        "ignoreTrailingComments": true,
+        "ignoreStrings": true,
+        "ignoreUrls": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "validation": {
+    "required": "Required"
+  },
+  "uploadKeyInputLabel": "Upload Key",
+  "uploadKeyDisabledHelperText": "Disabled because files have been added in upload list"
+}
