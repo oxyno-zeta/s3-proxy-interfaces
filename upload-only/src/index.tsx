@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Upload from './Upload';
 import Logo from './Logo';
@@ -12,10 +13,31 @@ import reportWebVitals from './reportWebVitals';
 // import i18n
 import './i18n';
 
+function SuspenseFallbackLoading() {
+  return (
+    <Box
+      sx={{
+        alignItems: 'center',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        position: 'absolute',
+      }}
+    >
+      <CircularProgress
+        size={60}
+        sx={{
+          zIndex: 9999,
+        }}
+      />
+    </Box>
+  );
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <Suspense fallback="loading">
+    <Suspense fallback={<SuspenseFallbackLoading />}>
       <Container maxWidth="xl">
         <Box
           sx={{
