@@ -3,35 +3,14 @@ import ReactDOM from 'react-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import CircularProgress from '@mui/material/CircularProgress';
-import Upload from './Upload';
-import Logo from './Logo';
+import Upload from './components/Upload';
+import Logo from './components/Logo';
 import Footer from './components/Footer';
+import SuspenseFallbackLoading from './components/SuspenseFallbackLoading';
 import reportWebVitals from './reportWebVitals';
 
 // import i18n
 import './i18n';
-
-function SuspenseFallbackLoading() {
-  return (
-    <Box
-      sx={{
-        alignItems: 'center',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-        position: 'absolute',
-      }}
-    >
-      <CircularProgress
-        size={60}
-        sx={{
-          zIndex: 9999,
-        }}
-      />
-    </Box>
-  );
-}
 
 ReactDOM.render(
   <React.StrictMode>

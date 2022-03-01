@@ -6,9 +6,9 @@ import { Dashboard, useUppy } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
-import defaultMethods from './defaultMethods';
+import defaultMethods from '../../defaultMethods';
 
-function App() {
+function Upload() {
   const [isInputDisabled, setInputDisabled] = React.useState(false);
   const [uploadKey, setUploadKey] = React.useState(
     (ExtraJS.getInitialUploadKey && ExtraJS.getInitialUploadKey()) || '',
@@ -99,4 +99,4 @@ function App() {
   );
 }
 
-export default App;
+export default Upload;
