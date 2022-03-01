@@ -27,4 +27,8 @@ declare let ExtraJS: {
   // Return:
   // Will return an object with src and image alt value.
   getLogoConfiguration(): { src: string; alt: string };
+  // GetFooter will be called to get the footer value.
+  // Return:
+  // Will return a string representing the footer to display.
+  getFooter(): string;
 };

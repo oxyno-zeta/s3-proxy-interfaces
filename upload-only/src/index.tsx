@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Upload from './Upload';
 import Logo from './Logo';
+import Footer from './components/Footer';
 import reportWebVitals from './reportWebVitals';
 
 // import i18n
@@ -56,9 +55,7 @@ ReactDOM.render(
             margin: '10px 0',
           }}
         >
-          <Typography sx={{ display: 'flex' }}>
-            Made with <FavoriteIcon sx={{ margin: '0 5px' }} color="error" fontSize="small" /> by Oxyno-zeta
-          </Typography>
+          <Footer />
         </Box>
       </Container>
     </Suspense>
