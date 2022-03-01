@@ -1,0 +1,31 @@
+# Log configuration
+log:
+  level: debug
+  format: text
+
+# Server configurations
+server:
+  listenAddr: ''
+  port: 8080
+
+listTargets:
+  enabled: false
+
+# Targets
+targets:
+  files:
+    mount:
+      host: localhost:8080
+      path:
+        - /files/
+    actions:
+      GET:
+        enabled: true
+      PUT:
+        enabled: true
+      DELETE:
+        enabled: true
+    bucket:
+      name: bucket
+      region: eu-west-1
+      prefix: /
