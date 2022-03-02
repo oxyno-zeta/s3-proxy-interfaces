@@ -63,6 +63,7 @@
         "ignoreTemplateLiterals": true,
         "ignoreRegExpLiterals": true
       }
-    ]
+    ],
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }]
   }
 }

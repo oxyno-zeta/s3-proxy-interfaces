@@ -31,4 +31,9 @@ declare let ExtraJS: {
   // Return:
   // Will return a string representing the footer to display.
   getFooter(): string;
+  // Initialize will be run on page startup.
+  // This is done in order to load some context that can be interesting to you for another function.
+  // Return:
+  // A promise. When an error is thrown, it is logged in the console and an error message is displayed.
+  initialize(): Promise<void>;
 };

@@ -6,7 +6,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Upload from './components/Upload';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
-import SuspenseFallbackLoading from './components/SuspenseFallbackLoading';
+import PageCenterLoading from './components/PageCenterLoading';
+import ExtraJSInitialize from './components/ExtraJSInitialize';
 import reportWebVitals from './reportWebVitals';
 
 // import i18n
@@ -15,28 +16,30 @@ import './i18n';
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <Suspense fallback={<SuspenseFallbackLoading />}>
-      <Container maxWidth="xl">
-        <Box
-          sx={{
-            alignItems: 'center',
-          }}
-        >
-          <Logo />
-          <Upload />
-        </Box>
-        <Box
-          sx={{
-            alignItems: 'center',
-            display: 'flex',
-            textAlign: 'center',
-            flexDirection: 'column',
-            margin: '10px 0',
-          }}
-        >
-          <Footer />
-        </Box>
-      </Container>
+    <Suspense fallback={<PageCenterLoading />}>
+      <ExtraJSInitialize loadingComponent={<PageCenterLoading />}>
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              alignItems: 'center',
+            }}
+          >
+            <Logo />
+            <Upload />
+          </Box>
+          <Box
+            sx={{
+              alignItems: 'center',
+              display: 'flex',
+              textAlign: 'center',
+              flexDirection: 'column',
+              margin: '10px 0',
+            }}
+          >
+            <Footer />
+          </Box>
+        </Container>
+      </ExtraJSInitialize>
     </Suspense>
   </React.StrictMode>,
   document.getElementById('root'),
