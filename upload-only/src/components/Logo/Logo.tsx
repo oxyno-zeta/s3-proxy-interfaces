@@ -5,6 +5,8 @@ function Logo() {
   const logoConfiguration = (ExtraJS.getLogoConfiguration && ExtraJS.getLogoConfiguration()) || {
     src: '/logo.png',
     alt: 'S3-Proxy',
+    width: '250',
+    height: '250',
   };
   return (
     <Box
@@ -13,7 +15,12 @@ function Logo() {
         textAlign: 'center',
       }}
     >
-      <img src={logoConfiguration.src} alt={logoConfiguration.alt} width="250" height="250" />
+      <img
+        src={logoConfiguration.src}
+        alt={logoConfiguration.alt}
+        width={logoConfiguration.width}
+        height={logoConfiguration.height}
+      />
     </Box>
   );
 }

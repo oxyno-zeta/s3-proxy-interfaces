@@ -25,8 +25,8 @@ declare let ExtraJS: {
   getInitialUploadKey(): string;
   // GetLogoConfiguration will return the logo configuration.
   // Return:
-  // Will return an object with src and image alt value.
-  getLogoConfiguration(): { src: string; alt: string };
+  // Will return an object with src, image alt, width and height values.
+  getLogoConfiguration(): { src: string; alt: string; width: string; height: string };
   // GetFooter will be called to get the footer value.
   // Return:
   // Will return a string representing the footer to display.
