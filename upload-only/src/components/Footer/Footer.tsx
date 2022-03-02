@@ -6,7 +6,17 @@ import Link from '@mui/material/Link';
 function Footer() {
   // Check if ExtraJS have a getFooter function defined
   if (ExtraJS.getFooter) {
-    return <Typography sx={{ display: 'flex' }}>{ExtraJS.getFooter()} - Powered by S3-Proxy</Typography>;
+    return (
+      <>
+        <Typography sx={{ display: 'flex' }}>{ExtraJS.getFooter()}</Typography>
+        <Typography sx={{ display: 'flex' }}>
+          Powered by&nbsp;
+          <Link href="https://github.com/oxyno-zeta/s3-proxy" target="_blank" rel="noreferrer noopener">
+            S3-Proxy
+          </Link>
+        </Typography>
+      </>
+    );
   }
 
   return (
