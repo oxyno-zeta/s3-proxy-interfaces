@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Upload from './components/Upload';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
@@ -18,27 +19,29 @@ ReactDOM.render(
     <CssBaseline />
     <Suspense fallback={<PageCenterLoading />}>
       <ExtraJSInitialize loadingComponent={<PageCenterLoading />}>
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              alignItems: 'center',
-            }}
-          >
-            <Logo />
-            <Upload />
-          </Box>
-          <Box
-            sx={{
-              alignItems: 'center',
-              display: 'flex',
-              textAlign: 'center',
-              flexDirection: 'column',
-              margin: '10px 0',
-            }}
-          >
-            <Footer />
-          </Box>
-        </Container>
+        <ThemeProvider theme={createTheme(ExtraJS.getCustomTheme ? ExtraJS.getCustomTheme() : {})}>
+          <Container maxWidth="xl">
+            <Box
+              sx={{
+                alignItems: 'center',
+              }}
+            >
+              <Logo />
+              <Upload />
+            </Box>
+            <Box
+              sx={{
+                alignItems: 'center',
+                display: 'flex',
+                textAlign: 'center',
+                flexDirection: 'column',
+                margin: '10px 0',
+              }}
+            >
+              <Footer />
+            </Box>
+          </Container>
+        </ThemeProvider>
       </ExtraJSInitialize>
     </Suspense>
   </React.StrictMode>,

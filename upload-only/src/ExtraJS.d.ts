@@ -36,4 +36,13 @@ declare let ExtraJS: {
   // Return:
   // A promise. When an error is thrown, it is logged in the console and an error message is displayed.
   initialize(): Promise<void>;
+  // IsPoweredByEnabled will return boolean value to know if powered by message must be display.
+  // Return:
+  // Will return boolean value to know if powered by message must be display.
+  isPoweredByEnabled(): boolean;
+  // GetCustomTheme will return a custom theme.
+  // Return:
+  // Should returns an object that will be taken by createTheme function.
+  // Documentation: https://mui.com/customization/theming/#createtheme-options-args-theme
+  getCustomTheme(): object;
 };

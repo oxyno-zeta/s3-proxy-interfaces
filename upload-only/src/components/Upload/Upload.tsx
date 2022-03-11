@@ -70,6 +70,9 @@ function Upload() {
     }
   });
 
+  // Get powered by enabled flag
+  const poweredByEnabled = ExtraJS.isPoweredByEnabled ? ExtraJS.isPoweredByEnabled() : true;
+
   return (
     <>
       <TextField
@@ -93,6 +96,7 @@ function Upload() {
         doneButtonHandler={() => {
           uppy.reset();
         }}
+        proudlyDisplayPoweredByUppy={poweredByEnabled}
         uppy={uppy}
       />
     </>
