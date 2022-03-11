@@ -1,0 +1,48 @@
+name: Upload-only CI
+on:
+  push:
+    branches-ignore:
+      - "github-pages"
+  pull_request: {}
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      project: ${{ steps.filter.outputs.project }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filters: |
+            project:
+              - 'upload-only/**/*'
+              - '.github/workflows/ci-upload-only.yml'
+  lint:
+    if: |
+      needs.changes.outputs.project == 'true'
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - run: cd upload-only && yarn install --frozen-lockfile
+      - run: cd upload-only && yarn lint
+  build:
+    if: |
+      needs.changes.outputs.project == 'true'
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - lint
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - run: cd upload-only && yarn install --frozen-lockfile
+      - run: cd upload-only && yarn build
