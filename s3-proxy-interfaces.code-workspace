@@ -8,6 +8,9 @@
     },
     {
       "path": "dashboard"
+    },
+    {
+      "path": "documentation"
     }
   ],
   "settings": {}
