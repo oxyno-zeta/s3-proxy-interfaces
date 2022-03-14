@@ -1,4 +1,4 @@
-<h1 align="center"><img width="350" height="350" src="https://raw.githubusercontent.com/oxyno-zeta/s3-proxy-interfaces/master/docs/logo/logo-without-text.png" /></h1>
+<h1 align="center"><img width="350" height="350" src="https://raw.githubusercontent.com/oxyno-zeta/s3-proxy-interfaces/master/documentation/docs/logo/logo-without-text.png" /></h1>
 <h1 align="center">S3-Proxy Interfaces</h1>
 
 <p align="center">
