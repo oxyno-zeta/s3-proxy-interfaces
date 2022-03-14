@@ -1,3 +1,7 @@
 (function () {
-  ExtraJS = {};
+  ExtraJS = {
+    // Put customized function here
+    // Example:
+    // getLogoConfiguration: ()=>({src: "fake"})
+  };
 })();
