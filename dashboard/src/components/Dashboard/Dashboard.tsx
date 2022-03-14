@@ -90,6 +90,8 @@ function Dashboard() {
   const [data, setData] = useState<Array<Entry>>([]);
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
+  // Data grid variables
+  const [pageSize, setPageSize] = useState(50);
   // Data reloader help
   const [refreshKey, setRefreshKey] = useState(0);
   // Deletion data
@@ -134,7 +136,10 @@ function Dashboard() {
       columns={columns}
       rowHeight={40}
       headerHeight={40}
-      pageSize={50}
+      pageSize={pageSize}
+      onPageSizeChange={(newPageSize) => {
+        setPageSize(newPageSize);
+      }}
       rowsPerPageOptions={[10, 25, 50, 100]}
       hideFooterSelectedRowCount
       checkboxSelection={deleteFeatureEnabled}
