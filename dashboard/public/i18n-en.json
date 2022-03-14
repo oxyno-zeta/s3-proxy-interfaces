@@ -1,0 +1,22 @@
+{
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "deletionDialog": {
+    "title": "Deletion confirmation",
+    "content_one": "Are you sure to delete this file ?",
+    "content_other": "Are you sure to delete these {{ count }} files ?"
+  },
+  "deletionNotification": {
+    "success_one": "Successfully removed 1 file.",
+    "success_other": "Successfully removed {{ count }} files.",
+    "fail": "Failed to remove \"{{ name }}\"."
+  },
+  "uploadDialog": {
+    "title": "Upload",
+    "uploadKeyInputLabel": "Folder Key",
+    "uploadKeyDisabledHelperText": "Disabled because files have been added in upload list",
+    "uploadKeyHelp": "Folder key in where uploads must be made. Can be empty to upload in current location."
+  },
+  "initializeError": "An error have been detected in the web site initialization. Please contact your administrator.",
+  "emptyData": "No data have been detected."
+}

@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "upload-only"
+    },
+    {
+      "path": "dashboard"
+    },
+    {
+      "path": "documentation"
+    }
+  ],
+  "settings": {}
+}

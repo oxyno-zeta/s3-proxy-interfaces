@@ -1,0 +1,13 @@
+# Add Dockerfile label
+dockerfile:
+  - Dockerfile*
+
+# Add actions label
+actions:
+  - .github/**/*
+  - .github/*
+
+# Add documentation label
+documentation:
+  - "**/*.md"
+  - "*.md"

@@ -1,0 +1,8 @@
+{
+  "validation": {
+    "required": "Required"
+  },
+  "uploadKeyInputLabel": "Upload Key",
+  "uploadKeyDisabledHelperText": "Disabled because files have been added in upload list",
+  "initializeError": "An error have been detected in the web site initialization. Please contact your administrator."
+}

@@ -1,0 +1,51 @@
+name: Documentation
+on:
+  push:
+    branches-ignore:
+      - "github-pages"
+  pull_request: {}
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      project: ${{ steps.filter.outputs.project }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filters: |
+            project:
+              - 'documentation/**/*.md'
+              - '.github/workflows/docs.yml'
+  docs-build:
+    if: |
+      needs.changes.outputs.project == 'true'
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs-material==8.0.2
+      - run: pip install mkdocs-awesome-pages-plugin==2.6.1
+      - run: cd documentation && mkdocs build
+  docs-deploy:
+    needs:
+      - docs-build
+      - changes
+    if: |
+      (needs.changes.outputs.project == 'true') &&
+      (github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs-material==8.0.2
+      - run: pip install mkdocs-awesome-pages-plugin==2.6.1
+      - run: cd documentation && mkdocs gh-deploy --force
