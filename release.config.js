@@ -110,7 +110,27 @@ module.exports = {
         },
       },
     ],
-    "@semantic-release/github",
+    [
+      "@semantic-release/exec",
+      {
+        publishCmd: "cd upload-only && yarn release",
+      },
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        publishCmd: "cd dashboard && yarn release",
+      },
+    ],
+    [
+      "@semantic-release/github",
+      {
+        assets: [
+          { path: "upload-only/upload-only.tar.gz" },
+          { path: "dashboard/dashboard.tar.gz" },
+        ],
+      },
+    ],
   ],
   repositoryUrl: "git@github.com:oxyno-zeta/s3-proxy-interfaces.git",
   tagFormat: "v${version}",
