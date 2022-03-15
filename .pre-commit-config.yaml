@@ -50,3 +50,13 @@ repos:
           - "yarn lint"
         require_serial: true
         language: script
+      - id: dashboard-lint
+        stages: [commit]
+        files: ^dashboard\/src\/.*\.ts{x,}$
+        name: dashboard lint
+        entry: ./run-sub-folder-task.sh
+        args:
+          - dashboard
+          - "yarn lint"
+        require_serial: true
+        language: script
