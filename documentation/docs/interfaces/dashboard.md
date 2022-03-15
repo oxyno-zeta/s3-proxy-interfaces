@@ -20,7 +20,7 @@ This interface provide those features:
     All the other configurations like webhooks, put metadata, ... can be configured as you want.
 <!-- prettier-ignore-end -->
 
-- Download interface archive release on <a href="https://github.com/s3-proxy-interfaces/releases" target="_blank">Github releases</a>
+- Download interface archive release on <a href="https://github.com/oxyno-zeta/s3-proxy-interfaces/releases" target="_blank">Github releases</a>
 - Open archive and extract files
 - Upload files in S3 bucket (named `INTERFACE-BUCKET` for the next part)
 - Configure S3-Proxy application like the following example
