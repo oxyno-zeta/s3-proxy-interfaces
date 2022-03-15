@@ -338,3 +338,4 @@ $RECYCLE.BIN/
 *.log
 config.yaml
 build/
+*.tar.gz
