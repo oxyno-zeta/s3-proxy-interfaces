@@ -9,6 +9,11 @@ export default {
       errorMessage = t('validation.required');
     }
 
+    // As it isn't compatible with s3-proxy, exclude ' characters
+    if (uploadKey.includes("'")) {
+      errorMessage = t('validation.noQuote');
+    }
+
     return errorMessage;
   },
   generateEndpoint: (uploadKey: string) => {
