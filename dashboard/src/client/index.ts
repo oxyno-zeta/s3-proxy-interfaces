@@ -9,6 +9,13 @@ export default function generate(): AxiosInstance {
     instance = axios.create({
       baseURL: '/files',
       headers: { Accept: 'application/json' },
+      transformResponse: (data) => {
+        if (data !== '') {
+          return JSON.parse(data);
+        }
+
+        return data;
+      },
     });
   }
 
