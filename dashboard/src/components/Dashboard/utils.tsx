@@ -17,7 +17,6 @@ const iconsMatcherList = [
   { regex: archiveFileRegex, iconElement: <ArchiveFileIcon /> },
 ];
 
-// eslint-disable-next-line import/prefer-default-export
 export function getFileIconFromExtension(path: string): ReactNode {
   // Loop over regex to icons map
   for (let i = 0; i < iconsMatcherList.length; i += 1) {
@@ -30,4 +29,12 @@ export function getFileIconFromExtension(path: string): ReactNode {
   }
 
   return <FileIcon />;
+}
+
+export function base64Encode(str: string) {
+  return window.btoa(encodeURIComponent(str));
+}
+
+export function base64Decode(str: string) {
+  return decodeURIComponent(window.atob(str));
 }

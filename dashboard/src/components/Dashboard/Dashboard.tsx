@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import filesize from 'filesize';
 import PageHeader from './components/PageHeader';
 import DeletionManager from './components/DeletionManager';
-import { getFileIconFromExtension } from './utils';
+import { getFileIconFromExtension, base64Encode, base64Decode } from './utils';
 import { Entry, FOLDER_TYPE, FILE_TYPE } from '../../models/Entry';
 import getClient from '../../client';
 import UploadDialog from './components/UploadDialog';
@@ -132,7 +132,7 @@ function Dashboard() {
   let mainElement = (
     <DataGrid
       rows={data}
-      getRowId={(row) => row.path}
+      getRowId={(row) => base64Encode(row.path)}
       columns={columns}
       rowHeight={40}
       headerHeight={40}
@@ -156,7 +156,7 @@ function Dashboard() {
         // Find rows from "ids"
         const selectedRows = data.filter((item) => {
           // Check if that item is in the list of "ids"
-          if (ids.find((id) => item.path === id)) {
+          if (ids.find((id) => item.path === base64Decode(id as string))) {
             return true;
           }
 
