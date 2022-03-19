@@ -1,4 +1,7 @@
 {
+  "validation": {
+    "noQuote": "Upload key cannot contains any simple quote (')."
+  },
   "ok": "Ok",
   "cancel": "Cancel",
   "deletionDialog": {
