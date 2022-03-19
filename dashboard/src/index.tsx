@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -16,7 +16,7 @@ import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <CssBaseline />
       <Suspense fallback={<PageCenterLoading />}>
         <ExtraJSInitialize loadingComponent={<PageCenterLoading />}>
@@ -29,7 +29,7 @@ ReactDOM.render(
           </ThemeProvider>
         </ExtraJSInitialize>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
