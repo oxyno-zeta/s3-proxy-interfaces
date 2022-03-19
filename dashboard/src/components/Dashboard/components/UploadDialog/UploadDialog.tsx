@@ -135,7 +135,12 @@ function UploadDialog({ open, handleClose, handleOk }: Props) {
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={() => {
+        // Flush upload key
+        setUploadKey('');
+        // Close
+        handleClose();
+      }}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       maxWidth="lg"
@@ -172,7 +177,11 @@ function UploadDialog({ open, handleClose, handleOk }: Props) {
           height="400px"
           uppy={uppy}
           doneButtonHandler={() => {
+            // Reset uppy
             uppy.reset();
+            // Flush Upload key
+            setUploadKey('');
+            // Close with ok
             handleOk();
           }}
           proudlyDisplayPoweredByUppy={poweredByEnabled}
