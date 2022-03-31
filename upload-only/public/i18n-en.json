@@ -1,7 +1,6 @@
 {
   "validation": {
-    "required": "Required",
-    "noQuote": "Upload key cannot contains any simple quote (')."
+    "required": "Required"
   },
   "uploadKeyInputLabel": "Upload Key",
   "uploadKeyDisabledHelperText": "Disabled because files have been added in upload list",
