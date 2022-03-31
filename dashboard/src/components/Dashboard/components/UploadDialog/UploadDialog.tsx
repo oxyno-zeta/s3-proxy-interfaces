@@ -52,15 +52,6 @@ function generateEndpoint(locationPathname: string, uploadKey: string) {
   return urlObject.pathname;
 }
 
-function validateUploadKey(uploadKey: string, t: (key: string) => string) {
-  // As it isn't compatible with s3-proxy, exclude ' characters
-  if (uploadKey.includes("'")) {
-    return t('validation.noQuote');
-  }
-
-  return '';
-}
-
 interface Props {
   open: boolean;
   handleClose: () => void;
@@ -76,9 +67,7 @@ function UploadDialog({ open, handleClose, handleOk }: Props) {
   const [uploadKey, setUploadKey] = React.useState('');
 
   // Validate
-  let errorMessage = ExtraJS.validateUploadKey
-    ? ExtraJS.validateUploadKey(uploadKey, t)
-    : validateUploadKey(uploadKey, t);
+  let errorMessage = ExtraJS.validateUploadKey ? ExtraJS.validateUploadKey(uploadKey, t) : '';
 
   // On change upload key function
   const onChangeUploadKey = (data: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
