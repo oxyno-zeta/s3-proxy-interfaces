@@ -8,15 +8,22 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SettingsIcon from '@mui/icons-material/Settings';
 import capitalize from 'capitalize';
 
 interface Props {
   isDeletionButtonEnabled: boolean;
   deletionButtonHandler: () => void;
   addButtonHandler: () => void;
+  settingsButtonHandler: () => void;
 }
 
-function PageHeader({ isDeletionButtonEnabled, deletionButtonHandler, addButtonHandler }: Props) {
+function PageHeader({
+  isDeletionButtonEnabled,
+  deletionButtonHandler,
+  addButtonHandler,
+  settingsButtonHandler,
+}: Props) {
   // Get location from router
   const location = useLocation();
   // Split pathname on /
@@ -79,6 +86,9 @@ function PageHeader({ isDeletionButtonEnabled, deletionButtonHandler, addButtonH
             <AddIcon />
           </IconButton>
         )}
+        <IconButton onClick={settingsButtonHandler}>
+          <SettingsIcon />
+        </IconButton>
       </Box>
     </Toolbar>
   );

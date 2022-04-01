@@ -7,6 +7,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import filesize from 'filesize';
+import GridToolbar from './components/GridToolbar';
 import PageHeader from './components/PageHeader';
 import DeletionManager from './components/DeletionManager';
 import { getFileIconFromExtension, base64Encode, base64Decode } from './utils';
@@ -99,6 +100,8 @@ function Dashboard() {
   const [isDeletionManagerDialogOpened, setDeletionManagerDialogOpened] = useState<boolean>(false);
   // Upload modal
   const [isUploadDialogOpened, setUploadDialogOpened] = useState<boolean>(false);
+  // Settings toolbar
+  const [isSettingToolbarShowed, setSettingToolbarShowed] = useState<boolean>(false);
 
   // Request the backend
   useEffect(() => {
@@ -133,6 +136,7 @@ function Dashboard() {
     <DataGrid
       rows={data}
       getRowId={(row) => base64Encode(row.path)}
+      components={{ Toolbar: isSettingToolbarShowed ? GridToolbar : undefined }}
       columns={columns}
       rowHeight={40}
       headerHeight={40}
@@ -249,6 +253,9 @@ function Dashboard() {
         }}
         addButtonHandler={() => {
           setUploadDialogOpened(true);
+        }}
+        settingsButtonHandler={() => {
+          setSettingToolbarShowed(!isSettingToolbarShowed);
         }}
       />
       {mainElement}
