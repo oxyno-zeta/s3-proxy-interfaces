@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridFilterModel } from '@mui/x-data-grid';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -102,6 +102,9 @@ function Dashboard() {
   const [isUploadDialogOpened, setUploadDialogOpened] = useState<boolean>(false);
   // Settings toolbar
   const [isSettingToolbarShowed, setSettingToolbarShowed] = useState<boolean>(false);
+  // Filter model
+  const [filterModel, setFilterModel] = useState<GridFilterModel | undefined>({ items: [] });
+  console.log(filterModel);
 
   // Request the backend
   useEffect(() => {
@@ -109,6 +112,8 @@ function Dashboard() {
     setLoading(true);
     // Flush the deletion data
     setForDeletionData([]);
+    // Flush filter
+    setFilterModel({ items: [] });
     // Request
     getClient()
       .get(location.pathname)
@@ -137,6 +142,8 @@ function Dashboard() {
       rows={data}
       getRowId={(row) => base64Encode(row.path)}
       components={{ Toolbar: isSettingToolbarShowed ? GridToolbar : undefined }}
+      filterModel={filterModel}
+      onFilterModelChange={(filter) => setFilterModel(filter)}
       columns={columns}
       rowHeight={40}
       headerHeight={40}
