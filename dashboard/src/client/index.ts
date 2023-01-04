@@ -2,20 +2,30 @@ import axios, { AxiosInstance } from 'axios';
 
 let instance: AxiosInstance | null = null;
 
-export default function generate(): AxiosInstance {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function defaultTransformResponse(data: any) {
+  if (data !== '') {
+    return JSON.parse(data);
+  }
+
+  return data;
+}
+
+export const defaultBaseURL = '/files';
+
+export default function getClient(): AxiosInstance {
   // Check if instance is already created
   if (!instance) {
     // Create instance
     instance = axios.create({
-      baseURL: '/files',
-      headers: { Accept: 'application/json' },
-      transformResponse: (data) => {
-        if (data !== '') {
-          return JSON.parse(data);
-        }
-
-        return data;
+      baseURL: ExtraJS.getBaseURL ? ExtraJS.getBaseURL() : defaultBaseURL,
+      headers: {
+        Accept: 'application/json',
+        ...(ExtraJS.getExtraHeaders ? ExtraJS.getExtraHeaders() : {}),
       },
+      transformResponse: ExtraJS.getAxiosTransformResponse
+        ? ExtraJS.getAxiosTransformResponse
+        : defaultTransformResponse,
     });
   }
 

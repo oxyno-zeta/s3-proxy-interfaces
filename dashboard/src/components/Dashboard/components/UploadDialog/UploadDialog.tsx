@@ -13,9 +13,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import HelpIcon from '@mui/icons-material/Help';
+import { defaultBaseURL } from '../../../../client';
 
 function generateEndpoint(locationPathname: string, uploadKey: string) {
-  const baseEndpoint = `/files${locationPathname}`;
+  // Init base endpoint
+  let baseEndpoint = ExtraJS.getBaseURL ? ExtraJS.getBaseURL() : defaultBaseURL;
+  // Add location pathname
+  baseEndpoint += locationPathname;
+
   // Check if upload key is set
   if (uploadKey === '') {
     return baseEndpoint;
@@ -88,6 +93,7 @@ function UploadDialog({ open, handleClose, handleOk }: Props) {
       formData: true,
       limit: 1,
       timeout: 3600 * 1000,
+      headers: ExtraJS.getExtraHeaders ? ExtraJS.getExtraHeaders() : {},
       ...(ExtraJS.getUploadSettings && ExtraJS.getUploadSettings()),
     }),
   );

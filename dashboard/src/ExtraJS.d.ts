@@ -50,4 +50,20 @@ declare let ExtraJS: {
   // Should returns an object that will be taken by createTheme function.
   // Documentation: https://mui.com/customization/theming/#createtheme-options-args-theme
   getCustomTheme(): object;
+  // GetBaseURL will allow to return the base url used for listing files, getting file or uploads.
+  // Note: Deletes are excluded because api provide path for api actions.
+  // Return:
+  // Will return a string containing the base url.
+  getBaseURL(): string;
+  // GetExtraHeaders will return extra headers that will be injected on GET and DELETE requests.
+  // For uploads, use the 'getUploadSettings' function.
+  // Return:
+  // Will return an object that will contain headers and values that will be injected on requests.
+  getExtraHeaders(): Record<string, string>;
+  // GetAxiosTransformResponse will return an Axios transformResponse function that will be used on
+  // axios GET and DELETE requests.
+  // Return:
+  // Will return an Axios transformResponse function.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getAxiosTransformResponse(): (data: any) => any;
 };
