@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { DataGrid, GridColDef, GridFilterModel } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridRowParams,
+  GridFilterModel,
+  GridRenderCellParams,
+  GridColumns,
+  GridActionsCellItem,
+} from '@mui/x-data-grid';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import filesize from 'filesize';
+import DownloadIcon from '@mui/icons-material/Download';
 import GridToolbar from './components/GridToolbar';
 import PageHeader from './components/PageHeader';
 import DeletionManager from './components/DeletionManager';
@@ -15,13 +23,13 @@ import { Entry, FOLDER_TYPE, FILE_TYPE } from '../../models/Entry';
 import getClient from '../../client';
 import UploadDialog from './components/UploadDialog';
 
-const columns: GridColDef[] = [
+const columns: GridColumns = [
   {
     field: 'name',
     headerName: 'Name',
     editable: false,
     flex: 1,
-    renderCell: (params: { value: string; row: Entry }) => {
+    renderCell: (params: GridRenderCellParams<string, Entry>) => {
       // Initialize as folder icon
       let iconElement = (
         <Avatar sx={{ marginRight: '5px' }}>
@@ -31,7 +39,7 @@ const columns: GridColDef[] = [
 
       // Check if type is a file
       if (params.row.type === FILE_TYPE) {
-        iconElement = <Avatar sx={{ marginRight: '5px' }}>{getFileIconFromExtension(params.value)}</Avatar>;
+        iconElement = <Avatar sx={{ marginRight: '5px' }}>{getFileIconFromExtension(params.value || '')}</Avatar>;
       }
 
       return (
@@ -48,15 +56,15 @@ const columns: GridColDef[] = [
     type: 'date',
     editable: false,
     valueGetter: (params: { value: string }) => new Date(params.value),
-    renderCell: (params: { value: Date }) => {
+    renderCell: (params: GridRenderCellParams<Date, Entry>) => {
       // Check if year is 1
-      if (params.value.getFullYear() === 1) {
+      if (params.value?.getFullYear() === 1) {
         // Empty value
         return '-';
       }
 
       // Display in browser locale
-      return params.value.toLocaleString();
+      return params.value?.toLocaleString();
     },
     flex: 0.25,
   },
@@ -68,7 +76,7 @@ const columns: GridColDef[] = [
     headerAlign: 'left',
     editable: false,
     flex: 0.1,
-    renderCell: (params: { value: number; row: Entry }) => {
+    renderCell: (params: GridRenderCellParams<number, Entry>) => {
       // Check if it is a folder
       if (params.row.type === FOLDER_TYPE) {
         // No size for a folder
@@ -76,7 +84,31 @@ const columns: GridColDef[] = [
       }
 
       // Default
-      return filesize(params.value);
+      return filesize(params.value || 0);
+    },
+  },
+  {
+    field: 'actions',
+    type: 'actions',
+    headerName: 'Actions',
+    getActions: (params: GridRowParams) => {
+      const { row } = params;
+      // Check if type is a folder
+      if (row.type === FOLDER_TYPE) {
+        // No link
+        return [];
+      }
+
+      return [
+        <GridActionsCellItem
+          component="a"
+          href={row.path}
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={<DownloadIcon />}
+          label="Download"
+        />,
+      ];
     },
   },
 ];
