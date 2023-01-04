@@ -104,7 +104,6 @@ function Dashboard() {
   const [isSettingToolbarShowed, setSettingToolbarShowed] = useState<boolean>(false);
   // Filter model
   const [filterModel, setFilterModel] = useState<GridFilterModel | undefined>({ items: [] });
-  console.log(filterModel);
 
   // Request the backend
   useEffect(() => {
