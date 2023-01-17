@@ -216,7 +216,7 @@ function Dashboard() {
           navigate(location.pathname + row.name, { replace: true });
         } else {
           // File detected, open file in another tab to download/open it
-          window.open(row.path, '_blank', 'noreferrer')?.focus();
+          window.open(row.path, '_blank', 'noreferrer noopener')?.focus();
         }
       }}
       autoHeight
