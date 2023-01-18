@@ -127,8 +127,8 @@ function Dashboard() {
   const [pageSize, setPageSize] = useState(50);
   // Data reloader help
   const [refreshKey, setRefreshKey] = useState(0);
-  // Deletion data
-  const [forDeletionData, setForDeletionData] = useState<Entry[]>([]);
+  // Selection data
+  const [selectedData, setSelectedData] = useState<Entry[]>([]);
   const [isDeletionManagerDialogOpened, setDeletionManagerDialogOpened] = useState<boolean>(false);
   // Upload modal
   const [isUploadDialogOpened, setUploadDialogOpened] = useState<boolean>(false);
@@ -141,8 +141,8 @@ function Dashboard() {
   useEffect(() => {
     // Start loading
     setLoading(true);
-    // Flush the deletion data
-    setForDeletionData([]);
+    // Flush the selected data
+    setSelectedData([]);
     // Flush filter
     setFilterModel({ items: [] });
     // Request
@@ -206,7 +206,7 @@ function Dashboard() {
         });
 
         // Save selected rows
-        setForDeletionData(selectedRows);
+        setSelectedData(selectedRows);
       }}
       onRowDoubleClick={(params) => {
         const { row } = params;
@@ -216,7 +216,7 @@ function Dashboard() {
           navigate(location.pathname + row.name, { replace: true });
         } else {
           // File detected, open file in another tab to download/open it
-          window.open(row.path, '_blank', 'noreferrer')?.focus();
+          window.open(row.path, '_blank', 'noreferrer noopener')?.focus();
         }
       }}
       autoHeight
@@ -274,7 +274,7 @@ function Dashboard() {
         }}
       />
       <DeletionManager
-        forDeletionData={forDeletionData}
+        forDeletionData={selectedData}
         dialogOkHandler={() => {
           setDeletionManagerDialogOpened(false);
           setRefreshKey(refreshKey + 1);
@@ -285,7 +285,8 @@ function Dashboard() {
         isDialogOpened={isDeletionManagerDialogOpened}
       />
       <PageHeader
-        isDeletionButtonEnabled={forDeletionData.length > 0}
+        isDeletionButtonEnabled={selectedData.length > 0}
+        isDownloadAllSelectedButtonEnabled={selectedData.length > 0}
         deletionButtonHandler={() => {
           setDeletionManagerDialogOpened(true);
         }}
@@ -294,6 +295,11 @@ function Dashboard() {
         }}
         settingsButtonHandler={() => {
           setSettingToolbarShowed(!isSettingToolbarShowed);
+        }}
+        downloadAllSelectedButtonHandler={() => {
+          selectedData.forEach((row) => {
+            window.open(row.path, '_blank', 'noreferrer noopener');
+          });
         }}
       />
       {mainElement}

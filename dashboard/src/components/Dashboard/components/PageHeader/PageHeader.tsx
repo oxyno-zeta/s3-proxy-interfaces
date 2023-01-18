@@ -9,20 +9,25 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from '@mui/icons-material/Settings';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import capitalize from 'capitalize';
 
 interface Props {
   isDeletionButtonEnabled: boolean;
+  isDownloadAllSelectedButtonEnabled: boolean;
   deletionButtonHandler: () => void;
   addButtonHandler: () => void;
   settingsButtonHandler: () => void;
+  downloadAllSelectedButtonHandler: () => void;
 }
 
 function PageHeader({
   isDeletionButtonEnabled,
+  isDownloadAllSelectedButtonEnabled,
   deletionButtonHandler,
   addButtonHandler,
   settingsButtonHandler,
+  downloadAllSelectedButtonHandler,
 }: Props) {
   // Get location from router
   const location = useLocation();
@@ -46,6 +51,11 @@ function PageHeader({
   // Get delete feature enabled flag
   const deleteFeatureEnabled = ExtraJS.isDeleteFeatureEnabled
     ? ExtraJS.isDeleteFeatureEnabled(location.pathname)
+    : true;
+
+  // Get download all selected feature enabled flag
+  const downloadAllSelectedFeatureEnabled = ExtraJS.isDownloadAllSelectedFeatureEnabled
+    ? ExtraJS.isDownloadAllSelectedFeatureEnabled(location.pathname)
     : true;
 
   // Get upload feature enabled flag
@@ -76,6 +86,11 @@ function PageHeader({
         })}
       </Breadcrumbs>
       <Box sx={{ marginLeft: 'auto' }}>
+        {downloadAllSelectedFeatureEnabled && isDownloadAllSelectedButtonEnabled && (
+          <IconButton onClick={downloadAllSelectedButtonHandler}>
+            <DownloadForOfflineIcon />
+          </IconButton>
+        )}
         {deleteFeatureEnabled && isDeletionButtonEnabled && (
           <IconButton onClick={deletionButtonHandler}>
             <DeleteIcon />
