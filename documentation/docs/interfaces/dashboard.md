@@ -8,6 +8,7 @@ This interface provide those features:
 - Paginate list of results
 - Allow to delete files on specific path
 - Allow to upload files on specific path
+- Allow to download all selected files on current page
 - Upload files on local path
 - Create subpath and upload in it
 - Interface customizations
@@ -124,6 +125,12 @@ declare let ExtraJS: {
   // Return:
   // Will return a boolean to know if upload feature is enabled.
   isUploadFeatureEnabled(path: string): boolean;
+  // isDownloadAllSelectedFeatureEnabled will allow to know if download all selected feature is enabled.
+  // Params:
+  // - path: actual ui path
+  // Return:
+  // Will return a boolean to know if download all selected feature is enabled.
+  isDownloadAllSelectedFeatureEnabled(path: string): boolean;
   // GetCustomTheme will return a custom theme.
   // Return:
   // Should returns an object that will be taken by createTheme function.
