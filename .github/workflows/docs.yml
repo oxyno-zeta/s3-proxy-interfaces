@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material==8.0.2
+      - run: pip install mkdocs-material==8.5.11
       - run: pip install mkdocs-awesome-pages-plugin==2.6.1
       - run: cd documentation && mkdocs build
   docs-deploy:
@@ -46,6 +46,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material==8.0.2
+      - run: pip install mkdocs-material==8.5.11
       - run: pip install mkdocs-awesome-pages-plugin==2.6.1
       - run: cd documentation && mkdocs gh-deploy --force
